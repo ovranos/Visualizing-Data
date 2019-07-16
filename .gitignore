@@ -1,104 +1,33 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# The following code is for plotting the relationship between two values.
+import matplotlib.pyplot as plt
 
-# C extensions
-*.so
+plt.plot(k_range, scores) plt.xlabel('Number of clusters') plt.ylabel('Cilhouette Coefficient')
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+# The following code is for plotting a histogram.
+drinks.beer.plot(kind='hist', bins=20, title='Histogram of Beer Servings') plt.xlabel('Beer Servings') plt.ylabel('Frequency')
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+# The following code is for plotting box plots, one with one variable, another with another.
+drinks.boxplot(columns='beer', by='continent', showmeans=True) drinks.beer.plot(kind='box')
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# The following code is for plotting a scatter plot.
+drinks.plot(kind='scatter',x='beer',y='wine', c='spirit', colormap='Greens')
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
+# To recapitualte for others further interested in simplicity:
 
-# Translations
-*.mo
-*.pot
+#   Histogram
+drinks.beet.plot(kind='hist', bins=20)
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
+#   Smooth Version of Histogram
+drinks.beer.plot(kind='density',xlim=(0,500))
 
-# Flask stuff:
-instance/
-.webassets-cache
+#   Scatter
+drinks.plot(kind='scatter', x='beer', y='wine')
 
-# Scrapy stuff:
-.scrapy
+#   Scatter Matrix
+pd.scatter_matric(drinks[['beer','spirit','wine']])
 
-# Sphinx documentation
-docs/_build/
+#   Numerical Comparison across Multiple Categories
+drinks.groupby('continent').mean().drop('liters',axis=1).plot(kind='bar', stacked=True)
 
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+#   Stacked Histograms
+drinks[['beer','spirit','wine']].plot(kind='hist', stacked=True
